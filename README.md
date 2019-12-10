@@ -12,7 +12,7 @@ The Raspberry Pi platform is a stable, accessible platform to develop IoT applic
 
 PioT should work with other CI/CD systems and just serves to optimize standard practices for Raspberry Pi's.
 
-# Design
+# Usage
 
 An RPi is provisioned starting from a Raspbian Lite image. We use systemd services to run bootstrap scripts to establish network, update the system, and install common packages. Applications are deployed using additional systemd services, driven by the developer's configuration code.
 
@@ -20,3 +20,10 @@ Applications are deployed as git repositories that contain a `.piot.yaml` file.
 
 When flashing a new image to an SD card, you specify the application repo and initial network configuration. On boot, the Pi will establish network, download the application repo, and run the application based on the `.piot.yaml` file.
 
+# SystemD Background
+
+Systemd is the initialization system for recent versions of Debian. It coordinates all the services that makes up a running Linux system. Unit files specify how to start resources and services. 
+
+Systemd loads units from specific directories. `systemctl enable/disable` installs units into these directories using symlinks. Units can specify (reverse) dependencies on other units.
+
+Units can be run individually with `systemctl start/stop`. To boot the system, SystemD starts a default target unit, and uses the dependency graph to bring up the rest of the system.
