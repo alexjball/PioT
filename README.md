@@ -27,3 +27,13 @@ Systemd is the initialization system for recent versions of Debian. It coordinat
 Systemd loads units from specific directories. `systemctl enable/disable` installs units into these directories using symlinks. Units can specify (reverse) dependencies on other units.
 
 Units can be run individually with `systemctl start/stop`. To boot the system, SystemD starts a default target unit, and uses the dependency graph to bring up the rest of the system.
+
+# OS Image Background
+
+Raspbian is distributed using `img` files, which contain the raw contents of the boot disk in a file. These files can be mounted in Linux and written to physical media to make it bootable. It's also easy to create a new `img` by reading back the physical media.
+
+Other operating systems like Ubuntu and Debian provide install images. These files contain a lightweight bootable system that is used to format and set up files on the actual boot disk.
+
+[PXE](https://wiki.debian.org/PXEBootInstall) is the standard way to boot new systems from network. RPi supports PXE over ethernet.
+
+[QEMU](https://azeria-labs.com/emulate-raspberry-pi-with-qemu/) can be used to emulate Raspberry Pi images, allowing for easier development of provisioning scripts.
