@@ -37,3 +37,11 @@ Other operating systems like Ubuntu and Debian provide install images. These fil
 [PXE](https://wiki.debian.org/PXEBootInstall) is the standard way to boot new systems from network. RPi supports PXE over ethernet.
 
 [QEMU](https://azeria-labs.com/emulate-raspberry-pi-with-qemu/) can be used to emulate Raspberry Pi images, allowing for easier development of provisioning scripts.
+
+# Design
+
+- PioT.provision writes a new image to boot media, transfers the PioT and application repos to the filesystem, and installs core SystemD services.
+- On boot, the core SystemD services configure network, enable SSH, and install application-specific services.
+- Once enabled, the application-specific services run on boot or whenever specified by the `piot.yaml` file.
+
+In this way, the application repo runs on top of the core PioT services.
