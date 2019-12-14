@@ -22,8 +22,10 @@ When flashing a new image to an SD card, you specify the application repo and in
 
 # SystemD Background
 
-Systemd is the initialization system for recent versions of Debian. It coordinates all the services that makes up a running Linux system. Unit files specify how to start resources and services. 
+Systemd an initialization system for Linux and Raspbian. It coordinates all the services that makes up a running Linux system. Unit files specify how to start resources and services. 
 
 Systemd loads units from specific directories. `systemctl enable/disable` installs units into these directories using symlinks. Units can specify (reverse) dependencies on other units.
 
-Units can be run individually with `systemctl start/stop`. To boot the system, SystemD starts a default target unit, and uses the dependency graph to bring up the rest of the system.
+Units can be run individually with `systemctl start/stop`. 
+
+To boot the system, SystemD starts a default target unit, and uses the dependency graph to bring up the rest of the system. 
