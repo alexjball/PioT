@@ -1,0 +1,31 @@
+{
+  "name": "piot",
+  "version": "1.0.0",
+  "description": "Easy Raspberry Pi Internet of Things applications",
+  "main": "cli.js",
+  "scripts": {
+    "test:watch": "jest --watch",
+    "test": "jest",
+    "start": "node cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexjball/PioT.git"
+  },
+  "author": "Alex Ball",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexjball/PioT/issues"
+  },
+  "homepage": "https://github.com/alexjball/PioT#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "dependencies": {
+    "shelljs": "^0.8.3",
+    "yargs": "^15.0.2"
+  },
+  "jest": {
+    "transform": {}
+  }
+}
