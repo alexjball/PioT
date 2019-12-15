@@ -29,3 +29,21 @@ Systemd loads units from specific directories. `systemctl enable/disable` instal
 Units can be run individually with `systemctl start/stop`. 
 
 To boot the system, SystemD starts a default target unit, and uses the dependency graph to bring up the rest of the system. 
+
+# OS Image Background
+
+Raspbian is distributed using `img` files, which contain the raw contents of the boot disk in a file. These files can be mounted in Linux and written to physical media to make it bootable. It's also easy to create a new `img` by reading back the physical media.
+
+Other operating systems like Ubuntu and Debian provide install images. These files contain a lightweight bootable system that is used to format and set up files on the actual boot disk.
+
+[PXE](https://wiki.debian.org/PXEBootInstall) is the standard way to boot new systems from network. RPi supports PXE over ethernet.
+
+[QEMU](https://azeria-labs.com/emulate-raspberry-pi-with-qemu/) can be used to emulate Raspberry Pi images, allowing for easier development of provisioning scripts.
+
+# Design
+
+- PioT.provision writes a new image to boot media, transfers the PioT and application repos to the filesystem, and installs core SystemD services.
+- On boot, the core SystemD services configure network, enable SSH, and install application-specific services.
+- Once enabled, the application-specific services run on boot or whenever specified by the `piot.yaml` file.
+
+In this way, the application repo runs on top of the core PioT services.
